@@ -1,14 +1,13 @@
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Restaurant {
-    private String name;
-    private String location;
+    private final String name;
+    private final String location;
     public LocalTime openingTime;
     public LocalTime closingTime;
-    private List<Item> menu = new ArrayList<Item>();
+    private final List<Item> menu = new ArrayList<Item>();
 
     public Restaurant(String name, String location, LocalTime openingTime, LocalTime closingTime) {
         this.name = name;
@@ -67,6 +66,14 @@ public class Restaurant {
 
     public String getName() {
         return name;
+    }
+
+    public int getTotalCost(List<String> selectedItems) {
+        int totalcost =0 ;
+        for (String itemname : selectedItems ) {
+            totalcost = totalcost+findItemByName(itemname).getPrice();
+        }
+        return totalcost;
     }
 
 
